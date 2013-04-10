@@ -7,14 +7,14 @@ class Game(object):
 
     def score(self):
         score = 0
-        i = 0
+        frame_index = 0
         for frame in range(10):
-            if (self.rolls[i] + self.rolls[i+1]) == 10:
+            if (self.rolls[frame_index] + self.rolls[frame_index+1]) == 10:
                 # a spare has been rolled
-                score += 10 + self.rolls[i+2]
+                score += 10 + self.rolls[frame_index+2]
             else:
-                score += self.rolls[i] + self.rolls[i+1]
-            i += 2
+                score += self.rolls[frame_index] + self.rolls[frame_index+1]
+            frame_index += 2
         return score
 
 
