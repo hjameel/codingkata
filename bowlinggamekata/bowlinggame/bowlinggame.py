@@ -6,4 +6,11 @@ class Game(object):
         self.rolls.append(pins)
 
     def score(self):
-        return sum(self.rolls)
+        score = 0
+        i = 0
+        for frame in range(10):
+            score += self.rolls[i] + self.rolls[i+1]
+            i += 2
+        return score
+
+
