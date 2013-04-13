@@ -26,5 +26,10 @@ public class StringCalculatorTest {
 	public void addCanSumOneNumber() {
 		assertEquals(10, calc.add(TEN));
 	}
+	
+	@Test
+	public void addCanSumTwoNumbers() {
+		assertEquals(20, calc.add("10, 10"));
+	}
 
 }
