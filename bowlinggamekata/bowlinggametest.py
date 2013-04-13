@@ -26,11 +26,14 @@ class BowlingGameTest(unittest.TestCase):
         self.assertEquals(16, self.g.score())
 
     def test_one_strike(self):
-        self.g.roll(10)
+        self._roll_strike()
         self.g.roll(3)
         self.g.roll(4)
         self._roll_many(16, 0)
         self.assertEquals(24, self.g.score())
+
+    def _roll_strike(self):
+        self.g.roll(10)
 
     def _roll_spare(self):
         self.g.roll(5)
