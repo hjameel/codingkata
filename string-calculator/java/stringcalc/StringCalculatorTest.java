@@ -39,7 +39,7 @@ public class StringCalculatorTest {
 	
 	@Test
 	public void sumsNumbersDelimitedByNewlines() {
-		assertEquals(20, calc.add("10\n10"));
+		assertEquals(30, calc.add("10\n10,10"));
 	}
 
 }
