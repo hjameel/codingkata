@@ -30,5 +30,11 @@ public class StringCalculatorTest {
 	public void addCanSumTwoNumbers() {
 		assertEquals(20, calc.add("10, 10"));
 	}
+	
+	@Test
+	public void addCanSumManyNumbers() {
+		assertEquals(30, calc.add("10, 10, 10"));
+		assertEquals(50, calc.add("10, 10, 5, 0, 25"));
+	}
 
 }
