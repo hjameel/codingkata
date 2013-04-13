@@ -6,6 +6,10 @@ public class StringCalculator {
 		if (s.isEmpty())
 			return 0;
 
+		return sumOfNumbersInString(s);
+	}
+
+	private int sumOfNumbersInString(String s) {
 		int sum = 0;
 		String[] numbers = s.split(",");
 		for (String number : numbers) {
