@@ -8,7 +8,6 @@ import org.junit.Test;
 public class StringCalculatorTest {
 	
 	private static final String EMPTY = "";
-	private static final String TEN = "10";
 
 	private StringCalculator calc;
 
@@ -24,7 +23,7 @@ public class StringCalculatorTest {
 	
 	@Test
 	public void addCanSumOneNumber() {
-		assertEquals(10, calc.add(TEN));
+		assertEquals(10, calc.add("10"));
 	}
 	
 	@Test
