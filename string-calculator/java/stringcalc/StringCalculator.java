@@ -1,5 +1,9 @@
 package stringcalc;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class StringCalculator {
 
     private static final String DEFAULT_DELIMITER = "[,\n]";
@@ -41,13 +45,20 @@ public class StringCalculator {
             throws Exception {
         int sum = 0;
         String[] numbers = s.split(delimiter);
+        
+        List<Integer> negatives = new ArrayList<Integer>();
         for (String numberStr : numbers) {
             int n = Integer.parseInt(numberStr.trim());
             if (n < 0) {
-                throw new Exception("negatives not allowed: " + n);
+                negatives.add(n);
             }
             sum += n;
         }
+        
+        if (!negatives.isEmpty()) {
+            throw new Exception("negatives not allowed: " + negatives);
+        }
+        
         return sum;
     }
 }

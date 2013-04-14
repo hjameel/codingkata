@@ -57,12 +57,14 @@ public class StringCalculatorTest {
     public void throwsAnExceptionWhenAttemptingToAddNegativeNumbers()
             throws Exception {
         String negative = "-10";
+        String otherNegative = "-20";
         
         exception.expect(Exception.class);
         exception.expectMessage(containsString("negatives not allowed"));
         exception.expectMessage(containsString(negative));
+        exception.expectMessage(containsString(otherNegative));
         
-        calc.add(negative);
+        calc.add(String.format("%s, %s", negative, otherNegative));
     }
 
 }
