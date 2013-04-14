@@ -16,12 +16,29 @@ public class StringCalculator {
 
 	private int sumOfNumbersInString(String s) {
 		String delimiter = DEFAULT_DELIMITER;
-		if (s.matches(CUSTOM_DELIMITER_PATTERN)) {
-			delimiter = s.substring(CUSTOM_DELIM_INDEX,
-					CUSTOM_DELIM_INDEX + 1);
-			s = s.substring(CUSTOM_DELIMITED_STRING_INDEX);
+		if (hasCustomDelimiter(s)) {
+			delimiter = getCustomDelimiter(s);
+			s = removeDelimiterSpecifierFromString(s);
 		}
 		
+		return sumNumbersInDelimitedString(s, delimiter);
+	}
+
+	private boolean hasCustomDelimiter(String s) {
+		return s.matches(CUSTOM_DELIMITER_PATTERN);
+	}
+
+	private String removeDelimiterSpecifierFromString(String s) {
+		s = s.substring(CUSTOM_DELIMITED_STRING_INDEX);
+		return s;
+	}
+
+	private String getCustomDelimiter(String s) {
+		return s.substring(CUSTOM_DELIM_INDEX,
+				CUSTOM_DELIM_INDEX + 1);
+	}
+	
+	private int sumNumbersInDelimitedString(String s, String delimiter) {
 		int sum = 0;
 		String[] numbers = s.split(delimiter);
 		for (String number : numbers) {
@@ -29,5 +46,4 @@ public class StringCalculator {
 		}
 		return sum;
 	}
-	
 }
