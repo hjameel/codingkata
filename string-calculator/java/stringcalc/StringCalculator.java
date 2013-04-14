@@ -44,7 +44,7 @@ public class StringCalculator {
         for (String numberStr : numbers) {
             int n = Integer.parseInt(numberStr.trim());
             if (n < 0) {
-                throw new Exception("negatives not allowed");
+                throw new Exception("negatives not allowed: " + n);
             }
             sum += n;
         }
