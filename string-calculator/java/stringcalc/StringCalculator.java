@@ -1,6 +1,11 @@
 package stringcalc;
 
 public class StringCalculator {
+	
+	private static final String DEFAULT_DELIMITER = "[,\n]";
+	private static final String CUSTOM_DELIMITER_PATTERN = "//.\n.*";
+	private static final int CUSTOM_DELIM_INDEX = 2;
+	private static final int CUSTOM_DELIMITED_STRING_INDEX = 4;
 
 	public int add(String s) {
 		if (s.isEmpty())
@@ -10,10 +15,11 @@ public class StringCalculator {
 	}
 
 	private int sumOfNumbersInString(String s) {
-		String delimiter = "[,\n]";
-		if (s.matches("//.\n.*")) {
-			delimiter = s.substring(2, 3);
-			s = s.substring(4);
+		String delimiter = DEFAULT_DELIMITER;
+		if (s.matches(CUSTOM_DELIMITER_PATTERN)) {
+			delimiter = s.substring(CUSTOM_DELIM_INDEX,
+					CUSTOM_DELIM_INDEX + 1);
+			s = s.substring(CUSTOM_DELIMITED_STRING_INDEX);
 		}
 		
 		int sum = 0;
@@ -23,4 +29,5 @@ public class StringCalculator {
 		}
 		return sum;
 	}
+	
 }
