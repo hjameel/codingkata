@@ -41,5 +41,10 @@ public class StringCalculatorTest {
 	public void sumsNumbersDelimitedByNewlines() {
 		assertEquals(30, calc.add("10\n10,10"));
 	}
+	
+	@Test
+	public void sumsNumbersSeparatedByCustomDelimiter() {
+		assertEquals(3, calc.add("//;\n1;2"));
+	}
 
 }

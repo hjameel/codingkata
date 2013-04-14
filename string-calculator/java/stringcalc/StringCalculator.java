@@ -10,8 +10,14 @@ public class StringCalculator {
 	}
 
 	private int sumOfNumbersInString(String s) {
+		String delimiter = "[,\n]";
+		if (s.matches("//.\n.*")) {
+			delimiter = s.substring(2, 3);
+			s = s.substring(4);
+		}
+		
 		int sum = 0;
-		String[] numbers = s.split("[,\n]");
+		String[] numbers = s.split(delimiter);
 		for (String number : numbers) {
 			sum += Integer.parseInt(number.trim());
 		}
