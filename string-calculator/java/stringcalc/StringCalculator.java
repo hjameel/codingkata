@@ -44,10 +44,13 @@ public class StringCalculator {
             throws Exception {
         int sum = 0;
         String[] numbers = s.split(delimiter);
+        int[] numbersInts = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            numbersInts[i] = Integer.parseInt(numbers[i].trim());
+        }
         
         List<Integer> negatives = new ArrayList<Integer>();
-        for (String numberStr : numbers) {
-            int n = Integer.parseInt(numberStr.trim());
+        for (int n : numbersInts) {
             if (n < 0) {
                 negatives.add(n);
             }
