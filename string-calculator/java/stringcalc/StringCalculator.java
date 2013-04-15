@@ -42,13 +42,9 @@ public class StringCalculator {
 
     private int sumNumbersInDelimitedString(String s, String delimiter)
             throws Exception {
-        int sum = 0;
-        String[] numbers = s.split(delimiter);
-        int[] numbersInts = new int[numbers.length];
-        for (int i = 0; i < numbers.length; i++) {
-            numbersInts[i] = Integer.parseInt(numbers[i].trim());
-        }
+        int[] numbersInts = toIntArray(s, delimiter);
         
+        int sum = 0;
         List<Integer> negatives = new ArrayList<Integer>();
         for (int n : numbersInts) {
             if (n < 0) {
@@ -62,5 +58,14 @@ public class StringCalculator {
         }
         
         return sum;
+    }
+
+    private int[] toIntArray(String s, String delimiter) {
+        String[] numbers = s.split(delimiter);
+        int[] numbersInts = new int[numbers.length];
+        for (int i = 0; i < numbers.length; i++) {
+            numbersInts[i] = Integer.parseInt(numbers[i].trim());
+        }
+        return numbersInts;
     }
 }
