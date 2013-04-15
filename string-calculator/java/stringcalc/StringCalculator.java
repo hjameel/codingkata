@@ -32,8 +32,7 @@ public class StringCalculator {
     }
 
     private String removeDelimiterSpecifierFromString(String s) {
-        s = s.substring(CUSTOM_DELIMITED_STRING_INDEX);
-        return s;
+        return s.substring(CUSTOM_DELIMITED_STRING_INDEX);
     }
 
     private String getCustomDelimiter(String s) {
