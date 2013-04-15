@@ -43,22 +43,9 @@ public class StringCalculator {
     private int sumNumbersInDelimitedString(String s, String delimiter)
             throws Exception {
         int[] numbersInts = toIntArray(s, delimiter);
-        
-        List<Integer> negatives = new ArrayList<Integer>();
-        for (int n : numbersInts) {
-            if (n < 0) {
-                negatives.add(n);
-            }
-        }
-        if (!negatives.isEmpty()) {
-            throw new Exception("negatives not allowed: " + negatives);
-        }
-        
-        int sum = 0;
-        for (int n : numbersInts) {
-            sum += n;
-        }
-        return sum;
+        throwExceptionIfNegativesInArray(numbersInts);
+
+        return calculateSum(numbersInts);
     }
 
     private int[] toIntArray(String s, String delimiter) {
@@ -69,4 +56,26 @@ public class StringCalculator {
         }
         return numbersInts;
     }
+
+    private void throwExceptionIfNegativesInArray(int[] numbersInts)
+            throws Exception {
+        List<Integer> negatives = new ArrayList<Integer>();
+        for (int n : numbersInts) {
+            if (n < 0) {
+                negatives.add(n);
+            }
+        }
+        if (!negatives.isEmpty()) {
+            throw new Exception("negatives not allowed: " + negatives);
+        }
+    }
+
+    private int calculateSum(int[] numbersInts) {
+        int sum = 0;
+        for (int n : numbersInts) {
+            sum += n;
+        }
+        return sum;
+    }
+
 }
