@@ -44,19 +44,20 @@ public class StringCalculator {
             throws Exception {
         int[] numbersInts = toIntArray(s, delimiter);
         
-        int sum = 0;
         List<Integer> negatives = new ArrayList<Integer>();
         for (int n : numbersInts) {
             if (n < 0) {
                 negatives.add(n);
             }
-            sum += n;
         }
-        
         if (!negatives.isEmpty()) {
             throw new Exception("negatives not allowed: " + negatives);
         }
         
+        int sum = 0;
+        for (int n : numbersInts) {
+            sum += n;
+        }
         return sum;
     }
 
