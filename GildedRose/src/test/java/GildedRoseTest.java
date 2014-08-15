@@ -3,8 +3,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 
 public class GildedRoseTest {
@@ -14,7 +12,7 @@ public class GildedRoseTest {
 		List<Item> items = new ArrayList<Item>();
 		
 		GildedRose.updateQuality(items);
-		
+
 		assertEquals(0, items.size());
 	}
 }
