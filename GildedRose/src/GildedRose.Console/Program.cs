@@ -112,6 +112,9 @@ namespace GildedRose.Console
         }
     }
 
+    /// <summary>
+    /// Not to be modified.
+    /// </summary>
     public class Item
     {
         public string Name { get; set; }
