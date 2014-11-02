@@ -1,15 +1,22 @@
 using NUnit.Framework;
-using System;
+using System.Collections.Generic;
+using GildedRose.Console;
 
 namespace GildedRose.Tests
 {
-    [TestFixture]
-    public class GildedRoseTest
+    public class when_update_items_is_called
     {
-        [Test]
-        public void TestCase()
+        [TestFixture]
+        public class given_an_empty_list_of_items
         {
-            Assert.Fail("Not implemented");
+            [Test]
+            public void it_should_not_update_the_list()
+            {
+                var program = new Program();
+                program.Items = new List<Item>();
+                program.UpdateQuality();
+                Assert.That(program.Items, Is.Empty);
+            }
         }
     }
 }
