@@ -56,31 +56,23 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private String getScoreForGameWithLessThanFourPoints() {
-		String score = "";
-		for (int i = 1; i < 3; i++) {
-			int tempScore = LOVE;
-			if (i == 1)
-				tempScore = player1CurrentPoints;
-			else {
-				score += "-";
-				tempScore = player2CurrentPoints;
-			}
-			switch (tempScore) {
-			case LOVE:
-				score += "Love";
-				break;
-			case FIFTEEN:
-				score += "Fifteen";
-				break;
-			case THIRTY:
-				score += "Thirty";
-				break;
-			case FORTY:
-				score += "Forty";
-				break;
-			}
+		return getScoreFromPoints(player1CurrentPoints) + "-"
+				+ getScoreFromPoints(player2CurrentPoints);
+	}
+
+	private String getScoreFromPoints(int points) {
+		switch (points) {
+		case LOVE:
+			return "Love";
+		case FIFTEEN:
+			return "Fifteen";
+		case THIRTY:
+			return "Thirty";
+		case FORTY:
+			return "Forty";
+		default:
+			return "";
 		}
-		return score;
 	}
 
 	private boolean pointsAreTied() {
