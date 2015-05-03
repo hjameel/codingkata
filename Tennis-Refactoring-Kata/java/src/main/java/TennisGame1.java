@@ -27,6 +27,40 @@ public class TennisGame1 implements TennisGame {
 		}
 	}
 
+	private String getScoreForTiedGame() {
+		String score;
+		switch (player1CurrentPoints) {
+		case 0:
+			score = "Love-All";
+			break;
+		case 1:
+			score = "Fifteen-All";
+			break;
+		case 2:
+			score = "Thirty-All";
+			break;
+		default:
+			score = "Deuce";
+			break;
+
+		}
+		return score;
+	}
+
+	private String getScoreForGameWithFourOrMorePoints() {
+		String score;
+		int minusResult = player1CurrentPoints - player2CurrentPoints;
+		if (minusResult == 1)
+			score = "Advantage player1";
+		else if (minusResult == -1)
+			score = "Advantage player2";
+		else if (minusResult >= 2)
+			score = "Win for player1";
+		else
+			score = "Win for player2";
+		return score;
+	}
+
 	private String getScoreForGameWithLessThanFourPoints() {
 		String score = "";
 		for (int i = 1; i < 3; i++) {
@@ -51,40 +85,6 @@ public class TennisGame1 implements TennisGame {
 				score += "Forty";
 				break;
 			}
-		}
-		return score;
-	}
-
-	private String getScoreForGameWithFourOrMorePoints() {
-		String score;
-		int minusResult = player1CurrentPoints - player2CurrentPoints;
-		if (minusResult == 1)
-			score = "Advantage player1";
-		else if (minusResult == -1)
-			score = "Advantage player2";
-		else if (minusResult >= 2)
-			score = "Win for player1";
-		else
-			score = "Win for player2";
-		return score;
-	}
-
-	private String getScoreForTiedGame() {
-		String score;
-		switch (player1CurrentPoints) {
-		case 0:
-			score = "Love-All";
-			break;
-		case 1:
-			score = "Fifteen-All";
-			break;
-		case 2:
-			score = "Thirty-All";
-			break;
-		default:
-			score = "Deuce";
-			break;
-
 		}
 		return score;
 	}
