@@ -1,7 +1,11 @@
 public class TennisGame1 implements TennisGame {
 
-	private int player1CurrentPoints = 0;
-	private int player2CurrentPoints = 0;
+	private static final int LOVE = 0;
+	private static final int FIFTEEN = 1;
+	private static final int THIRTY = 2;
+	private static final int FORTY = 3;
+	private int player1CurrentPoints = LOVE;
+	private int player2CurrentPoints = LOVE;
 	private String player1Name;
 	private String player2Name;
 
@@ -20,7 +24,7 @@ public class TennisGame1 implements TennisGame {
 	public String getScore() {
 		if (pointsAreTied()) {
 			return getScoreForTiedGame();
-		} else if (aPlayerHasScoredFourOrMore()) {
+		} else if (aPlayerHasHitFortyPoints()) {
 			return getScoreForGameWithFourOrMorePoints();
 		} else {
 			return getScoreForGameWithLessThanFourPoints();
@@ -28,43 +32,33 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private String getScoreForTiedGame() {
-		String score;
 		switch (player1CurrentPoints) {
-		case 0:
-			score = "Love-All";
-			break;
-		case 1:
-			score = "Fifteen-All";
-			break;
-		case 2:
-			score = "Thirty-All";
-			break;
+		case LOVE:
+			return "Love-All";
+		case FIFTEEN:
+			return "Fifteen-All";
+		case THIRTY:
+			return "Thirty-All";
 		default:
-			score = "Deuce";
-			break;
-
+			return "Deuce";
 		}
-		return score;
 	}
 
 	private String getScoreForGameWithFourOrMorePoints() {
-		String score;
-		int minusResult = player1CurrentPoints - player2CurrentPoints;
-		if (minusResult == 1)
-			score = "Advantage player1";
-		else if (minusResult == -1)
-			score = "Advantage player2";
-		else if (minusResult >= 2)
-			score = "Win for player1";
+		if (pointsDifference() == 1)
+			return "Advantage player1";
+		else if (pointsDifference() == -1)
+			return "Advantage player2";
+		else if (pointsDifference() >= 2)
+			return "Win for player1";
 		else
-			score = "Win for player2";
-		return score;
+			return "Win for player2";
 	}
 
 	private String getScoreForGameWithLessThanFourPoints() {
 		String score = "";
 		for (int i = 1; i < 3; i++) {
-		    int tempScore = 0;
+			int tempScore = LOVE;
 			if (i == 1)
 				tempScore = player1CurrentPoints;
 			else {
@@ -72,16 +66,16 @@ public class TennisGame1 implements TennisGame {
 				tempScore = player2CurrentPoints;
 			}
 			switch (tempScore) {
-			case 0:
+			case LOVE:
 				score += "Love";
 				break;
-			case 1:
+			case FIFTEEN:
 				score += "Fifteen";
 				break;
-			case 2:
+			case THIRTY:
 				score += "Thirty";
 				break;
-			case 3:
+			case FORTY:
 				score += "Forty";
 				break;
 			}
@@ -93,7 +87,11 @@ public class TennisGame1 implements TennisGame {
 		return player1CurrentPoints == player2CurrentPoints;
 	}
 
-	private boolean aPlayerHasScoredFourOrMore() {
-		return player1CurrentPoints >= 4 || player2CurrentPoints >= 4;
+	private int pointsDifference() {
+		return player1CurrentPoints - player2CurrentPoints;
+	}
+
+	private boolean aPlayerHasHitFortyPoints() {
+		return player1CurrentPoints > FORTY || player2CurrentPoints > FORTY;
 	}
 }
