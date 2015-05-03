@@ -18,18 +18,17 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public String getScore() {
-		String score = "";
 		if (pointsAreTied()) {
-			score = getScoreForTiedGame();
+			return getScoreForTiedGame();
 		} else if (aPlayerHasScoredFourOrMore()) {
-			score = getScoreForGameWithFourOrMorePoints();
+			return getScoreForGameWithFourOrMorePoints();
 		} else {
-			score = getScoreForGameWithLessThanFourPoints(score);
+			return getScoreForGameWithLessThanFourPoints();
 		}
-		return score;
 	}
 
-	private String getScoreForGameWithLessThanFourPoints(String score) {
+	private String getScoreForGameWithLessThanFourPoints() {
+		String score = "";
 		for (int i = 1; i < 3; i++) {
 		    int tempScore = 0;
 			if (i == 1)
