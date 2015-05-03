@@ -24,7 +24,7 @@ public class TennisGame1 implements TennisGame {
 	public String getScore() {
 		if (pointsAreTied()) {
 			return getScoreForTiedGame();
-		} else if (aPlayerHasHitFortyPoints()) {
+		} else if (aPlayerHasPassedFortyPoints()) {
 			return getScoreForGameWithFourOrMorePoints();
 		} else {
 			return getScoreForGameWithLessThanFourPoints();
@@ -83,7 +83,7 @@ public class TennisGame1 implements TennisGame {
 		return player1CurrentPoints - player2CurrentPoints;
 	}
 
-	private boolean aPlayerHasHitFortyPoints() {
+	private boolean aPlayerHasPassedFortyPoints() {
 		return player1CurrentPoints > FORTY || player2CurrentPoints > FORTY;
 	}
 }
