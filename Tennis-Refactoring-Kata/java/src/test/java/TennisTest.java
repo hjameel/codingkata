@@ -66,15 +66,25 @@ public class TennisTest {
     }
 
     public void checkAllScores(TennisGame game) {
-        int highestScore = Math.max(this.player1Score, this.player2Score);
-        for (int i = 0; i < highestScore; i++) {
-            if (i < this.player1Score)
-                game.wonPoint("player1");
-            if (i < this.player2Score)
-                game.wonPoint("player2");
-        }
+        addPlayerPointsToGame(game);
         assertEquals(this.expectedScore, game.getScore());
     }
+
+	private void addPlayerPointsToGame(TennisGame game) {
+		for (int score = 0; score < highestScore(); score++) {
+            scoreAPointForThePlayer(game, "player1", this.player1Score, score);
+            scoreAPointForThePlayer(game, "player2", this.player2Score, score);
+        }
+	}
+
+	private int highestScore() {
+		return Math.max(this.player1Score, this.player2Score);
+	}
+
+	private void scoreAPointForThePlayer(TennisGame game, String playerName, int playerHighestScore, int score) {
+		if (score < playerHighestScore)
+		    game.wonPoint(playerName);
+	}
 
     @Test
     public void checkAllScoresTennisGame1() {
