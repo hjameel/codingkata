@@ -1,4 +1,10 @@
 public class TennisGame1 implements TennisGame {
+	
+	private enum GameState {
+		tied,
+		underDeuceBoundary,
+		beyondDeuceBoundary
+	}
 
 	private static final int LOVE = 0;
 	private static final int FIFTEEN = 1;
@@ -22,12 +28,23 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	public String getScore() {
-		if (pointsAreTied()) {
+		switch (getState()) {
+		case tied:
 			return getScoreForTiedGame();
-		} else if (theDeuceBoundaryHasBeedPassed()) {
+		case beyondDeuceBoundary:
 			return getScoreForGamePassedTheDeuceBoundary();
-		} else {
+		default:
 			return getScoreForGameUnderDeuceBoundary();
+		}
+	}
+
+	private GameState getState() {
+		if (pointsAreTied()) {
+			return GameState.tied;
+		} else if (theDeuceBoundaryHasBeedPassed()) {
+			return GameState.beyondDeuceBoundary;
+		} else {
+			return GameState.underDeuceBoundary;
 		}
 	}
 
