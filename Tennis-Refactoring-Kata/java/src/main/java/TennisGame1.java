@@ -1,15 +1,8 @@
 public class TennisGame1 implements TennisGame {
-	
-	private enum GameState {
-		tied,
-		underDeuceBoundary,
-		beyondDeuceBoundary
-	}
-
 	private static final int LOVE = 0;
 	private static final int FIFTEEN = 1;
 	private static final int THIRTY = 2;
-	private static final int FORTY = 3;
+	public static final int FORTY = 3;
 	private int player1CurrentPoints = LOVE;
 	private int player2CurrentPoints = LOVE;
 	private String player1Name;
@@ -39,13 +32,7 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private GameState getState() {
-		if (pointsAreTied()) {
-			return GameState.tied;
-		} else if (theDeuceBoundaryHasBeedPassed()) {
-			return GameState.beyondDeuceBoundary;
-		} else {
-			return GameState.underDeuceBoundary;
-		}
+		return TennisGame1State.calculateState(player1CurrentPoints, player2CurrentPoints).getGameState();
 	}
 
 	private String getScoreForTiedGame() {
@@ -92,15 +79,54 @@ public class TennisGame1 implements TennisGame {
 		}
 	}
 
-	private boolean pointsAreTied() {
-		return player1CurrentPoints == player2CurrentPoints;
-	}
-
 	private int pointsDifference() {
 		return player1CurrentPoints - player2CurrentPoints;
 	}
+}
 
-	private boolean theDeuceBoundaryHasBeedPassed() {
-		return player1CurrentPoints > FORTY || player2CurrentPoints > FORTY;
+enum GameState {
+	tied,
+	underDeuceBoundary,
+	beyondDeuceBoundary
+}
+
+abstract class TennisGame1State {
+	abstract GameState getGameState();
+
+	public static TennisGame1State calculateState(int player1CurrentPoints, int player2CurrentPoints) {
+		if (player1CurrentPoints == player2CurrentPoints) {
+			return new Tied();
+		} else if (player1CurrentPoints > TennisGame1.FORTY || player2CurrentPoints > TennisGame1.FORTY) {
+			return new BeyondDeuceBoundary();
+		} else {
+			return new UnderDeuceBoundary();
+		}
 	}
+}
+
+class Tied extends TennisGame1State {
+
+	@Override
+	GameState getGameState() {
+		return GameState.tied;
+	}
+
+}
+
+class UnderDeuceBoundary extends TennisGame1State {
+
+	@Override
+	GameState getGameState() {
+		return GameState.underDeuceBoundary;
+	}
+	
+}
+
+class BeyondDeuceBoundary extends TennisGame1State {
+
+	@Override
+	GameState getGameState() {
+		return GameState.beyondDeuceBoundary;
+	}
+	
 }
