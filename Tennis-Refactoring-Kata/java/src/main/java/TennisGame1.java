@@ -32,7 +32,7 @@ public class TennisGame1 implements TennisGame {
 	}
 
 	private GameState getState() {
-		return TennisGame1State.calculateState(player1CurrentPoints, player2CurrentPoints).getGameState();
+		return TennisGame1State.newState(player1CurrentPoints, player2CurrentPoints).getGameState();
 	}
 
 	private String getScoreForTiedGame() {
@@ -93,7 +93,7 @@ enum GameState {
 abstract class TennisGame1State {
 	abstract GameState getGameState();
 
-	public static TennisGame1State calculateState(int player1CurrentPoints, int player2CurrentPoints) {
+	public static TennisGame1State newState(int player1CurrentPoints, int player2CurrentPoints) {
 		if (player1CurrentPoints == player2CurrentPoints) {
 			return new Tied();
 		} else if (player1CurrentPoints > TennisGame1.FORTY || player2CurrentPoints > TennisGame1.FORTY) {
