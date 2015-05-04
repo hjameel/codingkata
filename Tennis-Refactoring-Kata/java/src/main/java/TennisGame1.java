@@ -24,10 +24,10 @@ public class TennisGame1 implements TennisGame {
 	public String getScore() {
 		if (pointsAreTied()) {
 			return getScoreForTiedGame();
-		} else if (aPlayerHasPassedFortyPoints()) {
-			return getScoreForGameWithFourOrMorePoints();
+		} else if (theDeuceBoundaryHasBeedPassed()) {
+			return getScoreForGamePassedTheDeuceBoundary();
 		} else {
-			return getScoreForGameWithLessThanFourPoints();
+			return getScoreForGameUnderDeuceBoundary();
 		}
 	}
 
@@ -44,7 +44,7 @@ public class TennisGame1 implements TennisGame {
 		}
 	}
 
-	private String getScoreForGameWithFourOrMorePoints() {
+	private String getScoreForGamePassedTheDeuceBoundary() {
 		if (pointsDifference() == 1)
 			return "Advantage player1";
 		else if (pointsDifference() == -1)
@@ -55,7 +55,7 @@ public class TennisGame1 implements TennisGame {
 			return "Win for player2";
 	}
 
-	private String getScoreForGameWithLessThanFourPoints() {
+	private String getScoreForGameUnderDeuceBoundary() {
 		return getScoreFromPoints(player1CurrentPoints) + "-"
 				+ getScoreFromPoints(player2CurrentPoints);
 	}
@@ -83,7 +83,7 @@ public class TennisGame1 implements TennisGame {
 		return player1CurrentPoints - player2CurrentPoints;
 	}
 
-	private boolean aPlayerHasPassedFortyPoints() {
+	private boolean theDeuceBoundaryHasBeedPassed() {
 		return player1CurrentPoints > FORTY || player2CurrentPoints > FORTY;
 	}
 }
