@@ -10,7 +10,7 @@ abstract class TennisGame1State {
     public static TennisGame1State currentState(int player1CurrentPoints, int player2CurrentPoints) {
         if (player1CurrentPoints == player2CurrentPoints) {
             return new Tied(player1CurrentPoints, player2CurrentPoints);
-        } else if (player1CurrentPoints > Constants.FORTY || player2CurrentPoints > Constants.FORTY) {
+        } else if (player1CurrentPoints > Score.FORTY || player2CurrentPoints > Score.FORTY) {
             return new BeyondDeuceBoundary(player1CurrentPoints, player2CurrentPoints);
         } else {
             return new UnderDeuceBoundary(player1CurrentPoints, player2CurrentPoints);
@@ -29,11 +29,11 @@ class Tied extends TennisGame1State {
     @Override
     protected String getScore() {
         switch (player1CurrentPoints) {
-            case Constants.LOVE:
+            case Score.LOVE:
                 return "Love-All";
-            case Constants.FIFTEEN:
+            case Score.FIFTEEN:
                 return "Fifteen-All";
-            case Constants.THIRTY:
+            case Score.THIRTY:
                 return "Thirty-All";
             default:
                 return "Deuce";
@@ -54,13 +54,13 @@ class UnderDeuceBoundary extends TennisGame1State {
 
     private String getScoreFromPoints(int points) {
         switch (points) {
-            case Constants.LOVE:
+            case Score.LOVE:
                 return "Love";
-            case Constants.FIFTEEN:
+            case Score.FIFTEEN:
                 return "Fifteen";
-            case Constants.THIRTY:
+            case Score.THIRTY:
                 return "Thirty";
-            case Constants.FORTY:
+            case Score.FORTY:
                 return "Forty";
             default:
                 return "";

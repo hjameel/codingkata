@@ -1,4 +1,4 @@
-public class Constants {
+public class Score {
     protected static final int LOVE = 0;
     protected static final int FIFTEEN = 1;
     protected static final int THIRTY = 2;

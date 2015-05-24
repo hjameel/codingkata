@@ -1,6 +1,6 @@
 public class TennisGame1 implements TennisGame {
-    private int player1CurrentPoints = Constants.LOVE;
-    private int player2CurrentPoints = Constants.LOVE;
+    private int player1CurrentPoints = Score.LOVE;
+    private int player2CurrentPoints = Score.LOVE;
     private String player1Name;
     private String player2Name;
 
