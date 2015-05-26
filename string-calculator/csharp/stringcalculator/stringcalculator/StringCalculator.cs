@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 
 namespace Stringcalculator
 {
@@ -6,7 +6,12 @@ namespace Stringcalculator
     {
         public static long Add(string input)
         {
-            return 0;
+            if (input == string.Empty)
+            {
+                return 0;
+            }
+
+            return input.Split(',').Select(long.Parse).Sum();
         }
 
         public static void Main()

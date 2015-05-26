@@ -12,6 +12,18 @@ namespace Stringcalculator.Test
             {
                 Assert.That(StringCalculator.Add(string.Empty), Is.EqualTo(0));
             }
+            
+            [Test]
+            public void ReturnTheSumOfASingleNumber()
+            {
+                Assert.That(StringCalculator.Add("1"), Is.EqualTo(1));
+            }
+            
+            [Test]
+            public void ReturnTheSumOfTwoNumbers()
+            {
+                Assert.That(StringCalculator.Add("1,2"), Is.EqualTo(3));
+            }
         }
     }
 }
