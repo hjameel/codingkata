@@ -11,7 +11,7 @@ namespace Stringcalculator
                 return 0;
             }
 
-            return input.Split(',').Select(long.Parse).Sum();
+            return input.Split('\n', ',').Select(long.Parse).Sum();
         }
 
         public static void Main()
