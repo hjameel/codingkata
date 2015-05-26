@@ -5,21 +5,21 @@ namespace Stringcalculator
 {
     public class StringCalculator
     {
-        public static long Add(string csv)
+        public static long Add(string csvText)
         {
-            return IsEmpty(csv) 
-                ? 0 
-                : TheIndividualElementsOfThe(csv).Sum();
+            return IsEmpty(csvText)
+                ? 0
+                : TheIndividualElementsOfThe(csvText).Sum();
         }
 
-        private static bool IsEmpty(string csv)
+        private static bool IsEmpty(string csvText)
         {
-            return csv == string.Empty;
+            return csvText == string.Empty;
         }
 
-        private static IEnumerable<long> TheIndividualElementsOfThe(string numbers)
+        private static IEnumerable<long> TheIndividualElementsOfThe(string csvText)
         {
-            return numbers.Split('\n', ',').Select(long.Parse);
+            return Csv.Read(csvText).GetIndividualElements();
         }
 
         public static void Main()

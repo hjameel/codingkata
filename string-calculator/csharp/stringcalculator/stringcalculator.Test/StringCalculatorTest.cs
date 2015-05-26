@@ -16,15 +16,21 @@ namespace Stringcalculator.Test
             [TestCase("1", 1)]
             [TestCase("1,2", 3)]
             [TestCase("1,2,3,4", 10)]
-            public void SumCommaSeparatedNumbers(string commaSeparatedNumbers, int sum)
+            public void SumCommaSeparatedNumbers(string csv, int sum)
             {
-                Assert.That(StringCalculator.Add(commaSeparatedNumbers), Is.EqualTo(sum));
+                Assert.That(StringCalculator.Add(csv), Is.EqualTo(sum));
             }
 
             [Test]
             public void SumNumbersSeparatedByNewLines()
             {
                 Assert.That(StringCalculator.Add("1\n2,3"), Is.EqualTo(6));
+            }
+
+            [Test]
+            public void SumNumbersSeparatedByCustomDelimiter()
+            {
+                Assert.That(StringCalculator.Add("//;\n1;2"), Is.EqualTo(3));
             }
         }
     }
