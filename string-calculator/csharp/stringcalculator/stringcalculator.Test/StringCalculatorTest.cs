@@ -12,17 +12,13 @@ namespace Stringcalculator.Test
             {
                 Assert.That(StringCalculator.Add(string.Empty), Is.EqualTo(0));
             }
-            
-            [Test]
-            public void ReturnTheSumOfASingleNumber()
+
+            [TestCase("1", 1)]
+            [TestCase("1,2", 3)]
+            [TestCase("1,2,3,4", 10)]
+            public void ReturnTheSumTheCommaSeparatedNumbers(string commaSeparatedNumbers, int sum)
             {
-                Assert.That(StringCalculator.Add("1"), Is.EqualTo(1));
-            }
-            
-            [Test]
-            public void ReturnTheSumOfTwoNumbers()
-            {
-                Assert.That(StringCalculator.Add("1,2"), Is.EqualTo(3));
+                Assert.That(StringCalculator.Add(commaSeparatedNumbers), Is.EqualTo(sum));
             }
         }
     }
