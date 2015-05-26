@@ -25,3 +25,4 @@ TestResult.xml
 test-results
 GildedRose.userprefs
 *.idea
+.gitattributes
