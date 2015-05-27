@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,7 +6,6 @@ namespace Stringcalculator
 {
     public abstract class Csv
     {
-        private static readonly string InitialValue = null;
         private const string CustomDelimiterIndicator = "//";
         protected string CsvText;
 
@@ -25,9 +23,9 @@ namespace Stringcalculator
             return new DefaultDelimitedCsv(csvText);
         }
 
-        public abstract char[] Delimiters { get; }
+        protected abstract char[] Delimiters { get; }
 
-        public abstract string Text { get; }
+        protected abstract string Text { get; }
 
         public IEnumerable<long> GetIndividualElements()
         {
@@ -45,12 +43,12 @@ namespace Stringcalculator
         {
         }
 
-        public override char[] Delimiters
+        protected override char[] Delimiters
         {
             get { return DefaultDelimiters; }
         }
 
-        public override string Text
+        protected override string Text
         {
             get { return CsvText; }
         }
@@ -66,12 +64,12 @@ namespace Stringcalculator
         {
         }
 
-        public override char[] Delimiters
+        protected override char[] Delimiters
         {
             get { return GetCustomDelimiter(CsvText); }
         }
 
-        public override string Text
+        protected override string Text
         {
             get { return CsvText.Substring(DelimiterSpecifierLength); }
         }
