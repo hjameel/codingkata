@@ -32,6 +32,13 @@ namespace Stringcalculator.Test
             {
                 Assert.That(StringCalculator.Add("//;\n1;2"), Is.EqualTo(3));
             }
+
+            [Test]
+            public void ReportIfAnyNegativeNumbersAreInTheCsv()
+            {
+                Assert.That(() => StringCalculator.Add("1,-2,-4"),
+                    Throws.ArgumentException.With.Message.EqualTo("negatives not allowed: -2, -4"));
+            }
         }
     }
 }

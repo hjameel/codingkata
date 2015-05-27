@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,6 +7,7 @@ namespace Stringcalculator
 {
     public abstract class Csv
     {
+        private static readonly string InitialValue = null;
         private const string CustomDelimiterIndicator = "//";
         protected string CsvText;
 
@@ -29,14 +31,47 @@ namespace Stringcalculator
 
         public IEnumerable<long> GetIndividualElements()
         {
-            return Text.Split(Delimiters).Select(long.Parse);
+            ValidateThatThereAreNoNegativesIn(ReadElements());
+            return ReadElements();
+        }
+
+        private IEnumerable<long> ReadElements()
+        {
+            return Text.Split(Delimiters).Select(long.Parse).ToList();
+        }
+
+        public void ValidateThatThereAreNoNegativesIn(IEnumerable<long> elements)
+        {
+            var negatives = elements.Where(IsNegative).ToList();
+
+            if (negatives.Count() != 0)
+            {
+                throw new ArgumentException(
+                    string.Format("negatives not allowed: {0}",
+                        negatives.Select(AsString).Aggregate(InitialValue, CommaSeparatedList)));
+            }
+        }
+
+        private string CommaSeparatedList(string negativesList, string elem)
+        {
+            return negativesList == InitialValue ? elem : negativesList + ", " + elem;
+        }
+
+        private string AsString(long x)
+        {
+            return x.ToString();
+        }
+
+        private bool IsNegative(long elem)
+        {
+            return elem < 0;
         }
     }
 
 
     public class DefaultDelimitedCsv : Csv
     {
-        private static readonly char[] DefaultDelimiters = { '\n', ',' };
+        private static readonly char[] DefaultDelimiters = {'\n', ','};
 
         public DefaultDelimitedCsv(string csvText)
             : base(csvText)

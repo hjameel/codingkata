@@ -7,9 +7,11 @@ namespace Stringcalculator
     {
         public static long Add(string csvText)
         {
-            return IsEmpty(csvText)
-                ? 0
-                : TheIndividualElementsOfThe(csvText).Sum();
+            if (IsEmpty(csvText))
+            {
+                return 0;
+            }
+            return TheIndividualElementsOfThe(csvText).Sum();
         }
 
         private static bool IsEmpty(string csvText)
@@ -19,9 +21,12 @@ namespace Stringcalculator
 
         private static IEnumerable<long> TheIndividualElementsOfThe(string csvText)
         {
-            return Csv.Read(csvText).GetIndividualElements();
+            return Csv.Read(csvText).GetIndividualElements().ToList();
         }
 
+        /// <summary>
+        /// Required for console project
+        /// </summary>
         public static void Main()
         {
         }
