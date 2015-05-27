@@ -31,40 +31,7 @@ namespace Stringcalculator
 
         public IEnumerable<long> GetIndividualElements()
         {
-            ValidateThatThereAreNoNegativesIn(ReadElements());
-            return ReadElements();
-        }
-
-        private IEnumerable<long> ReadElements()
-        {
             return Text.Split(Delimiters).Select(long.Parse).ToList();
-        }
-
-        public void ValidateThatThereAreNoNegativesIn(IEnumerable<long> elements)
-        {
-            var negatives = elements.Where(IsNegative).ToList();
-
-            if (negatives.Count() != 0)
-            {
-                throw new ArgumentException(
-                    string.Format("negatives not allowed: {0}",
-                        negatives.Select(AsString).Aggregate(InitialValue, CommaSeparatedList)));
-            }
-        }
-
-        private string CommaSeparatedList(string negativesList, string elem)
-        {
-            return negativesList == InitialValue ? elem : negativesList + ", " + elem;
-        }
-
-        private string AsString(long x)
-        {
-            return x.ToString();
-        }
-
-        private bool IsNegative(long elem)
-        {
-            return elem < 0;
         }
     }
 
