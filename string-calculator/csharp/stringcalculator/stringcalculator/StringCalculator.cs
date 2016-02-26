@@ -7,7 +7,7 @@ namespace Stringcalculator
 {
     public class StringCalculator
     {
-        public static long Add(string csvText)
+        public long Add(string csvText)
         {
             return IsEmpty(csvText)
                 ? 0
@@ -33,17 +33,16 @@ namespace Stringcalculator
 
         private static void ValidateThatThereAreNoNegativesIn(IEnumerable<long> elements)
         {
-            var negatives = elements.Where(IsNegative);
-
-            if (negatives.Count() != 0)
+            if (elements.Where(IsNegative).Any())
             {
-                throw new ArgumentException(string.Format("negatives not allowed: {0}", string.Join(", ", negatives)));
+                throw new ArgumentException(
+                    string.Format("negatives not allowed: {0}", string.Join(", ", elements.Where(IsNegative))));
             }
         }
 
-        private static bool IsNegative(long elem)
+        private static bool IsNegative(long element)
         {
-            return elem < 0;
+            return element < 0;
         }
     }
 }
