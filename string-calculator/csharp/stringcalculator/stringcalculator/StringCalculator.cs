@@ -1,3 +1,4 @@
+// ReSharper disable PossibleMultipleEnumeration
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +26,14 @@ namespace Stringcalculator
             return elements.Sum();
         }
 
-        private static IList<long> TheIndividualElementsOfThe(string csvText)
+        private static IEnumerable<long> TheIndividualElementsOfThe(string csvText)
         {
-            return Csv.Read(csvText).GetIndividualElements().ToList();
+            return Csv.Read(csvText).GetIndividualElements();
         }
 
         private static void ValidateThatThereAreNoNegativesIn(IEnumerable<long> elements)
         {
-            var negatives = elements.Where(IsNegative).ToList();
+            var negatives = elements.Where(IsNegative);
 
             if (negatives.Count() != 0)
             {
@@ -43,13 +44,6 @@ namespace Stringcalculator
         private static bool IsNegative(long elem)
         {
             return elem < 0;
-        }
-
-        /// <summary>
-        /// Required for console project
-        /// </summary>
-        public static void Main()
-        {
         }
     }
 }
