@@ -29,7 +29,7 @@ namespace Stringcalculator
 
         public IEnumerable<long> GetIndividualElements()
         {
-            return Text.Split(Delimiters).Select(long.Parse).ToList();
+            return Text.Split(Delimiters).Select(long.Parse);
         }
     }
 
